@@ -12,6 +12,187 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+.glow-on-hover {
+  width: 220px;
+  height: 50px;
+  border: none;
+  outline: none;
+  color: rgb(0, 0, 0);
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+}
+
+.glow-on-hover:before {
+  content: '';
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  position: absolute;
+  top: -2px;
+  left:-2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  border-radius: 10px;
+}
+
+.glow-on-hover:active {
+  color: rgb(249, 249, 249)
+}
+
+.glow-on-hover:active:after {
+  background: transparent;
+}
+
+.glow-on-hover:hover:before {
+  opacity: 1;
+}
+
+.glow-on-hover:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgb(255, 255, 255);
+  left: 0;
+  top: 0;
+  border-radius:7px;
+  -webkit-border-radius:7px;
+  -moz-border-radius:7px;
+  -ms-border-radius:7px;
+  -o-border-radius:7px;
+}
+
+@keyframes glowing {
+  0% { background-position: 0 0; }
+  50% { background-position: 400% 0; }
+  100% { background-position: 0 0; }
+}
+
 * {
   box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --color-primary: #bc0109;
+  --color-secondary: #f49b90;
+  --color-tertiary: #d37468;
+  --color-quaternary: #e7b2ab;
+  --color-quinary: #c6b6b6;
+  /*
+  --color-primary: #5192ED;
+  --color-secondary: #69A1F0;
+  --color-tertiary: #7EAEF2;
+  --color-quaternary: #90BAF5;
+  --color-quinary: #A2C4F5;
+  */
+}
+
+body {
+  min-height: 100vh;
+  font-family: canada-type-gibson, sans-serif;
+  font-weight: 300;
+  font-size: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #eff8e2;
+}
+
+.content {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.text_shadows {
+  text-shadow: 3px 3px 0 var(--color-secondary), 6px 6px 0 var(--color-tertiary),
+    9px 9px var(--color-quaternary), 12px 12px 0 var(--color-quinary);
+  font-family: bungee, sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: calc(2rem + 5vw);
+  text-align: center;
+  margin: 0;
+  color: var(--color-primary);
+  animation: shadows 1.2s ease-in infinite, move 1.2s ease-in infinite;
+  letter-spacing: 0.4rem;
+}
+
+@keyframes shadows {
+  0% {
+    text-shadow: none;
+  }
+  10% {
+    text-shadow: 3px 3px 0 var(--color-secondary);
+  }
+  20% {
+    text-shadow: 3px 3px 0 var(--color-secondary),
+      6px 6px 0 var(--color-tertiary);
+  }
+  30% {
+    text-shadow: 3px 3px 0 var(--color-secondary),
+      6px 6px 0 var(--color-tertiary), 9px 9px var(--color-quaternary);
+  }
+  40% {
+    text-shadow: 3px 3px 0 var(--color-secondary),
+      6px 6px 0 var(--color-tertiary), 9px 9px var(--color-quaternary),
+      12px 12px 0 var(--color-quinary);
+  }
+  50% {
+    text-shadow: 3px 3px 0 var(--color-secondary),
+      6px 6px 0 var(--color-tertiary), 9px 9px var(--color-quaternary),
+      12px 12px 0 var(--color-quinary);
+  }
+  60% {
+    text-shadow: 3px 3px 0 var(--color-secondary),
+      6px 6px 0 var(--color-tertiary), 9px 9px var(--color-quaternary),
+      12px 12px 0 var(--color-quinary);
+  }
+  70% {
+    text-shadow: 3px 3px 0 var(--color-secondary),
+      6px 6px 0 var(--color-tertiary), 9px 9px var(--color-quaternary);
+  }
+  80% {
+    text-shadow: 3px 3px 0 var(--color-secondary),
+      6px 6px 0 var(--color-tertiary);
+  }
+  90% {
+    text-shadow: 3px 3px 0 var(--color-secondary);
+  }
+  100% {
+    text-shadow: none;
+  }
+}
+
+@keyframes move {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  40% {
+    transform: translate(-12px, -12px);
+  }
+  50% {
+    transform: translate(-12px, -12px);
+  }
+  60% {
+    transform: translate(-12px, -12px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+  }
 }
