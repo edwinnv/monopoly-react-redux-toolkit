@@ -4,31 +4,29 @@ export default {
   dataMonopoly: {
     players: {
       1: {
-        name: 'Player One',
+        name: 'EDWIN',
         money: 1500,
-        position: 4,
-        image:
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Rojos.png/250px-Rojos.png',
+        position: 1,
+        color: 'green',
       },
       2: {
-        name: 'Player Two',
+        name: 'LUIS',
         money: 1500,
-        position: 8,
-        image:
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/F1_light_blue_flag.svg/1280px-F1_light_blue_flag.svg.png',
+        position: 1,
+        color: 'red',
       },
       3: {
-        name: 'Player Two',
+        name: 'NICOLLE',
         money: 1500,
-        position: 8,
-        image:
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/F1_light_blue_flag.svg/1280px-F1_light_blue_flag.svg.png',
+        position: 1,
+        color: 'yellow',
       },
     },
     currentPlayer: undefined,
     gameBoard: gameBoard,
+    turnState: 'start',
   },
   dice: {
-    number: 0,
+    number: undefined,
   },
 }

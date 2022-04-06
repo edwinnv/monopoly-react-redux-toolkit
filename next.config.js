@@ -5,6 +5,6 @@ const nextConfig = {
 
 module.exports = {
   images: {
-    domains: ['live.mrf.io'],
+    domains: ['upload.wikimedia.org'],
   },
 }

@@ -20,19 +20,40 @@ const gameSlice = createSlice({
     setTurn(state, action) {
       return {
         ...state,
+        turnState: 'dice',
         currentPlayer: action.payload,
       }
     },
-    // setPosition(state, action) {
-    //   return {
-    //     ...state,
-    //     currentPlayer: action.payload,
-    //   }
-    // },
+    setPosition(
+      state,
+      { payload: { currentPlayer: player, numberPosition: position } }
+    ) {
+      return {
+        ...state,
+        turnState: 'actions',
+        players: {
+          ...state.players,
+          [player]: { ...state.players[player], position },
+        },
+      }
+    },
+    setBuySite(state, { payload: { currentPlayer: player,  price: price } }) {
+      return {
+        ...state,
+        turnState: 'actions',
+        players: {
+          ...state.players,
+          [player]: {
+            ...state.players[player],
+            money: state.players[player]?.money - price,
+          },
+        },
+      }
+    },
   },
 })
 
-export const { setGame, setTurn, setGameBoard } = gameSlice.actions
+export const { setGame, setTurn, setGameBoard, setPosition, setBuySite } = gameSlice.actions
 
 export const getDataGame = () => async (dispatch, getState) => {
   try {
@@ -50,8 +71,22 @@ export const getGameBoard = () => async (dispatch) => {
   }
 }
 
-export const getTurn = (turn, quantityPlayers) => {
-  return setTurn(turn === quantityPlayers ? 1 : turn + 1)
+export const setPlayerPosition =
+  (currentPlayer, numberPosition) => (dispatch, getState) => {
+    try {
+      dispatch(setPosition({ currentPlayer, numberPosition }))
+    } catch (error) {
+      throw error
+    }
+  }
+
+export const setBuySitePlayer = 
+(currentPlayer, site, price) => (dispatch, getState) => {
+  try {
+    dispatch(setBuySite({ currentPlayer, site, price }))
+  } catch (error) {
+    throw error
+  }
 }
 
 export const makeMove = (player) => {

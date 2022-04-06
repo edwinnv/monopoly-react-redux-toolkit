@@ -19,10 +19,14 @@ export const { setDice } = diceSlice.actions
 export const getDice = (value) => async (dispatch) => {
   try {
     dispatch(setDice(value))
-	return value;
+    return value
   } catch (error) {
     throw error
   }
+}
+
+export const resetDice = () => {
+  return setDice(undefined)
 }
 
 export default diceSlice.reducer
